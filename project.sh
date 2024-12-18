@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Constants
-URL="https://picsum.photos/200/300"
+URL="https://picsum.photos"
 BASE_DIR=$(pwd)
 TEMP_DIR="$BASE_DIR/temp"
 
@@ -27,16 +27,16 @@ function downloadImage() {
 
     # Ensure the target directory exists
     mkdir -p "$image_path"
+    echo "${URL}/${width}/${height} "
 
     # Use curl to download the image
-    curl -s "${URL}/${width}/${height}" -o "${image_path}/${file_name}" && \
+    curl -L "${URL}/${width}/${height}" -o "${image_path}/${file_name}" && \
         echo "Image saved to ${image_path}/${file_name}" || \
         echo "Failed to download the image."
 
     # Return back to the base directory
     cd "$BASE_DIR"
 }
-
 
 # Function: Save image based on user input
 function saveImage() {
